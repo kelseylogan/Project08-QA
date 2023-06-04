@@ -87,5 +87,12 @@ describe('Ordering a blanket and handkerchiefs', () => {
         await orderRequirements.click();
         const radioButton = await $(page.radioButton);
         await radioButton.click();
+
+    })
+})
+
+describe('The car search modal appears', () => {
+    it('should have car search modal pop up', async () => {
+       
     })
 })

@@ -6,11 +6,10 @@ module.exports = {
     codeField: '#code',
     creditCardField: '#number',
     messageField: '#comment',
-    
     // Buttons
     callATaxiButton: 'button=Call a taxi',
     phoneNumberButton: '//div[starts-with(text(), "Phone number")]',
-    paymentMethodButton: '//*[@class="pp-text"]',
+    paymentMethodButton: 'div=Payment method',
     addCardButton: '//div[starts-with(text(), "Add card")]',
     nextButton: 'button=Next',
     confirmButton: 'button=Confirm',
