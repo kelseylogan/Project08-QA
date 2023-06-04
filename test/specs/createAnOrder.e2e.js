@@ -13,8 +13,8 @@ describe('Setting the addresses', () => {
     })
 })
 
-describe('Selecting a taxi as the transportation of choice', () => {
-    it('should open the taxi ordering menu', async () => {
+describe('Selecting a Supportive taxi as the transportation of choice', () => {
+    it('should select Supportive taxi', async () => {
         await browser.url(`/`)
         const fromField = await $(page.fromField);
         await fromField.setValue('East 2nd Street, 601');
@@ -24,7 +24,9 @@ describe('Selecting a taxi as the transportation of choice', () => {
         const callATaxiButton = await $(page.callATaxiButton);
         await callATaxiButton.waitForDisplayed();
         await callATaxiButton.click();
-        await browser.pause(10000);
+        const supportiveTaxi = await $(page.supportiveTaxi);
+        await supportiveTaxi.waitForDisplayed();
+        await supportiveTaxi.click();
     })
 })
 
@@ -73,5 +75,17 @@ describe('Writing a message to the driver', () => {
         const messageField = await $(page.messageField);
         await messageField.setValue('Pick up some ice cream!');
         await browser.pause(10000);
+    })
+})
+
+describe('Ordering a blanket and handkerchiefs', () => {
+    it('should add a blanket and handkerchief to the order', async () => {
+        await browser.url(`/`)
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        const orderRequirements = await $(page.orderRequirements);
+        await orderRequirements.waitForDisplayed();
+        await orderRequirements.click();
+        const radioButton = await $(page.radioButton);
+        await radioButton.click();
     })
 })
