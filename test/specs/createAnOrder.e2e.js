@@ -1,7 +1,34 @@
 const page = require('../../page');
 const helper = require('../../helper')
 
-describe('Create an order', () => {
+
+describe('Setting the addresses', () => {
+    it('should set the "To" and "From" addresses', async () => {
+        await browser.url(`/`)
+        const fromField = await $(page.fromField);
+        await fromField.setValue('East 2nd Street, 601');
+        const toField = await $(page.toField)
+        await toField.setValue('1300 1st St')
+        await browser.pause(10000);
+    })
+})
+
+describe('Selecting a taxi as the transportation of choice', () => {
+    it('should open the taxi ordering menu', async () => {
+        await browser.url(`/`)
+        const fromField = await $(page.fromField);
+        await fromField.setValue('East 2nd Street, 601');
+        const toField = await $(page.toField);
+        await toField.setValue('1300 1st St');
+        await browser.pause(10000);
+        const callATaxiButton = await $(page.callATaxiButton);
+        await callATaxiButton.waitForDisplayed();
+        await callATaxiButton.click();
+        await browser.pause(10000);
+    })
+})
+
+describe('Filling in phone number', () => {
     it('should open phone number modal', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
@@ -21,3 +48,6 @@ describe('Create an order', () => {
     })
 })
 
+describe('Adding a credit card ', () => {
+
+})
