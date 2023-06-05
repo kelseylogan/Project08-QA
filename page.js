@@ -9,12 +9,8 @@ module.exports = {
     // Buttons
     callATaxiButton: 'button=Call a taxi',
     phoneNumberButton: '//div[starts-with(text(), "Phone number")]',
-    paymentMethodButton: 'div=Payment method',
-    addCardButton: '//div[starts-with(text(), "Add card")]',
     nextButton: 'button=Next',
     confirmButton: 'button=Confirm',
-    orderRequirements: '//div[starts-with(text(), "Order requirements")]',
-    supportiveTaxi: '//div[starts-with(text(), "Supportive")]',
     // Modals
     phoneNumberModal: '.modal',
     // Functions

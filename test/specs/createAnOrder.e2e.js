@@ -24,7 +24,7 @@ describe('Selecting a Supportive taxi as the transportation of choice', () => {
         const callATaxiButton = await $(page.callATaxiButton);
         await callATaxiButton.waitForDisplayed();
         await callATaxiButton.click();
-        const supportiveTaxi = await $(page.supportiveTaxi);
+        const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.waitForDisplayed();
         await supportiveTaxi.click();
     })
@@ -54,10 +54,12 @@ describe('Adding a credit card ', () => {
     it('should add a credit card to the order', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        const paymentMethodButton = await $(page.paymentMethodButton);
-        await paymentMethodButton.waitForDisplayed();
-        await paymentMethodButton.click();
-        const addCardButton = await $(page.addCardButton);
+        const supportiveTaxi =$('div=Supportive');
+        await supportiveTaxi.click();
+        const paymentMethod = $('.pp-text');
+        await paymentMethod.waitForDisplayed();
+        await paymentMethod.click();
+        const addCardButton = await $('.pp-checkbox');
         await addCardButton.waitForDisplayed();
         await addCardButton.click();
         const creditCardField = await $(page.creditCardField);
@@ -82,12 +84,12 @@ describe('Ordering a blanket and handkerchiefs', () => {
     it('should add a blanket and handkerchief to the order', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        const orderRequirements = await $(page.orderRequirements);
-        await orderRequirements.waitForDisplayed();
-        await orderRequirements.click();
-        const radioButton = await $(page.radioButton);
-        await radioButton.click();
-
+        const orderRequirementsButton =$('.reqs-arrow');
+        await orderRequirementsButton.click();
+        const blanketAndHandkerchiefsButton = $('.r-sw');
+        await orderRequirementsButton.waitForClickable();
+        await blanketAndHandkerchiefsButton.click();
+        
     })
 })
 
