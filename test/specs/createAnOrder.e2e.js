@@ -57,10 +57,8 @@ describe('Adding a credit card ', () => {
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.click();
         const paymentMethod = $('.pp-text');
-        await paymentMethod.waitForDisplayed();
         await paymentMethod.click();
         const addCardButton = await $('.pp-checkbox');
-        await addCardButton.waitForDisplayed();
         await addCardButton.click();
         const creditCardField = await $(page.creditCardField);
         await creditCardField.setValue('253795093758');
@@ -84,10 +82,12 @@ describe('Ordering a blanket and handkerchiefs', () => {
     it('should add a blanket and handkerchief to the order', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        const orderRequirementsButton =$('.reqs-arrow');
+        const supportiveTaxi =$('div=Supportive');
+        await supportiveTaxi.click();
+        const orderRequirementsButton =$('.reqs-header');
+        await orderRequirementsButton.click();
         await orderRequirementsButton.click();
         const blanketAndHandkerchiefsButton = $('.r-sw');
-        await orderRequirementsButton.waitForClickable();
         await blanketAndHandkerchiefsButton.click();
         
     })
