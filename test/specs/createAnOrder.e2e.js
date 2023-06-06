@@ -9,7 +9,6 @@ describe('Setting the addresses', () => {
         await fromField.setValue('East 2nd Street, 601');
         const toField = await $(page.toField)
         await toField.setValue('1300 1st St')
-        await browser.pause(10000);
     })
 })
 
@@ -75,7 +74,6 @@ describe('Writing a message to the driver', () => {
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const messageField = await $(page.messageField);
         await messageField.setValue('Pick up some ice cream!');
-        await browser.pause(10000);
     })
 })
 
