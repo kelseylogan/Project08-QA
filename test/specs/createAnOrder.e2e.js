@@ -58,13 +58,14 @@ describe('Adding a credit card ', () => {
         await supportiveTaxi.click();
         const paymentMethod = $('.pp-text');
         await paymentMethod.click();
-        const addCardButton = await $('.pp-checkbox');
+        const addCardButton = await $('div=Add card');
         await addCardButton.click();
         const creditCardField = await $(page.creditCardField);
         await creditCardField.setValue('253795093758');
-        const codeField = await $(page.codeField);
-        await codeField.setValue('13');
-        await browser.pause(10000);
+        const cardCode = await $('.card-input#code');
+        await cardCode.setValue('13');
+        const linkButton = await $('button=Link');
+        await linkButton.click();
     })
 })
 
@@ -95,6 +96,11 @@ describe('Ordering a blanket and handkerchiefs', () => {
 
 describe('The car search modal appears', () => {
     it('should have car search modal pop up', async () => {
-       
+        await browser.url(`/`)
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        const supportiveTaxi =$('div=Supportive');
+        await supportiveTaxi.click();
+        const smartButton = await $('//div/button[@class="smart-button"]');
+        await smartButton.click();
     })
 })
