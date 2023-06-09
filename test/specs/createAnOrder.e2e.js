@@ -2,18 +2,16 @@ const page = require('../../page');
 const helper = require('../../helper')
 
 
-describe('Setting the addresses', () => {
+describe('Ordering a Taxi from Urban Routes', () => {
     it('should set the "To" and "From" addresses', async () => {
         await browser.url(`/`)
         const fromField = await $(page.fromField);
         await fromField.setValue('East 2nd Street, 601');
         const toField = await $(page.toField)
         await toField.setValue('1300 1st St')
-    })
-})
+    }),
 
-describe('Selecting a Supportive taxi as the transportation of choice', () => {
-    it('should select Supportive taxi', async () => {
+    it('should select Supportive taxi as the transportation of choice', async () => {
         await browser.url(`/`)
         const fromField = await $(page.fromField);
         await fromField.setValue('East 2nd Street, 601');
@@ -21,15 +19,14 @@ describe('Selecting a Supportive taxi as the transportation of choice', () => {
         await toField.setValue('1300 1st St');
         await browser.pause(10000);
         const callATaxiButton = await $(page.callATaxiButton);
+        await expect(callATaxiButton).toBeExisting();
         await callATaxiButton.waitForDisplayed();
         await callATaxiButton.click();
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.waitForDisplayed();
         await supportiveTaxi.click();
     })
-})
 
-describe('Filling in phone number', () => {
     it('should open phone number modal', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
@@ -38,7 +35,7 @@ describe('Filling in phone number', () => {
         await phoneNumberButton.click();
         const phoneNumberModal = await $(page.phoneNumberModal);
         await expect(phoneNumberModal).toBeExisting();
-    })
+    }),
 
     it('should save the phone', async () => {
         await browser.url(`/`)
@@ -46,59 +43,58 @@ describe('Filling in phone number', () => {
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
         await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
-    })
-})
+    }),
 
-describe('Adding a credit card ', () => {
     it('should add a credit card to the order', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.click();
         const paymentMethod = $('.pp-text');
+        await expect(paymentMethod).toBeExisting();
         await paymentMethod.click();
         const addCardButton = await $('div=Add card');
+        await expect(addCardButton).toBeExisting();
         await addCardButton.click();
         const creditCardField = await $(page.creditCardField);
         await creditCardField.setValue('253795093758');
         const cardCode = await $('.card-input#code');
         await cardCode.setValue('13');
         const linkButton = await $('button=Link');
+        await expect(linkButton).toBeExisting();
         await linkButton.click();
-    })
-})
+    }),
 
-describe('Writing a message to the driver', () => {
-    it('should add a message', async () => {
+    it('should add a message to the driver', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const messageField = await $(page.messageField);
+        await expect(messageField).toBeExisting();
         await messageField.setValue('Pick up some ice cream!');
-    })
-})
+    }),
 
-describe('Ordering a blanket and handkerchiefs', () => {
     it('should add a blanket and handkerchief to the order', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.click();
         const orderRequirementsButton =$('.reqs-header');
+        await expect(orderRequirementsButton).toBeExisting();
         await orderRequirementsButton.click();
         await orderRequirementsButton.click();
         const blanketAndHandkerchiefsButton = $('.r-sw');
+        await expect(blanketAndHandkerchiefsButton).toBeExisting();
         await blanketAndHandkerchiefsButton.click();
         
-    })
-})
+    }),
 
-describe('The car search modal appears', () => {
     it('should have car search modal pop up', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.click();
         const smartButton = await $('//div/button[@class="smart-button"]');
+        await expect(smartButton).toBeExisting();
         await smartButton.click();
     })
 })
