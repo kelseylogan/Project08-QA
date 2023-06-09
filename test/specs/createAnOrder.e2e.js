@@ -14,6 +14,7 @@ describe('Ordering a Taxi from Urban Routes', () => {
     it('should select Supportive taxi as the transportation of choice', async () => {
         await browser.url(`/`)
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
+        await browser.pause(2000);
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.waitForDisplayed();
         await supportiveTaxi.click();
