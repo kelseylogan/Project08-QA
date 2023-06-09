@@ -13,15 +13,7 @@ describe('Ordering a Taxi from Urban Routes', () => {
 
     it('should select Supportive taxi as the transportation of choice', async () => {
         await browser.url(`/`)
-        const fromField = await $(page.fromField);
-        await fromField.setValue('East 2nd Street, 601');
-        const toField = await $(page.toField);
-        await toField.setValue('1300 1st St');
-        await browser.pause(10000);
-        const callATaxiButton = await $(page.callATaxiButton);
-        await expect(callATaxiButton).toBeExisting();
-        await callATaxiButton.waitForDisplayed();
-        await callATaxiButton.click();
+        await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
         const supportiveTaxi =$('div=Supportive');
         await supportiveTaxi.waitForDisplayed();
         await supportiveTaxi.click();

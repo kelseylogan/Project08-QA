@@ -6,10 +6,4 @@ module.exports = {
     getElementByText: async function(obj) {
         return await $(`div=${obj.toString()}`);
     },
-    getToPaymentMethod: async function() {
-        const supportiveTaxi =$('div=Supportive');
-        await supportiveTaxi.click();
-        const paymentMethod = $('.pp-text');
-        await paymentMethod.click();
-    }
 };
