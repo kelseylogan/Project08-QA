@@ -17,8 +17,9 @@ describe('Ordering a Taxi from Urban Routes', () => {
         await browser.pause(2000);
         const supportiveTaxi = await $('div=Supportive');
         await supportiveTaxi.waitForDisplayed();
-        await supportiveTaxi.click();
-    })
+        await supportiveTaxi.click();;
+        await supportiveTaxi.isFocused();
+    }),
 
     it('should open phone number modal', async () => {
         await browser.url(`/`)
@@ -48,9 +49,13 @@ describe('Ordering a Taxi from Urban Routes', () => {
         await creditCardField.setValue('253795093758');
         const cardCode = await $('.card-input#code');
         await cardCode.setValue('13');
+        const blankSpace = await $('.pp-separator')
+        await blankSpace.click();
         const linkButton = await $('button=Link');
         await expect(linkButton).toBeExisting();
         await linkButton.click();
+        const addCardButton = await $('div=Add card');
+        await expect(addCardButton).toBeClickable();
     }),
 
     it('should add a message to the driver', async () => {
@@ -74,7 +79,7 @@ describe('Ordering a Taxi from Urban Routes', () => {
         const blanketAndHandkerchiefsButton = await $('.r-sw');
         await expect(blanketAndHandkerchiefsButton).toBeExisting();
         await blanketAndHandkerchiefsButton.click();
-        
+        await blanketAndHandkerchiefsButton.isSelected();
     }),
 
     it('should have car search modal pop up', async () => {
@@ -85,5 +90,7 @@ describe('Ordering a Taxi from Urban Routes', () => {
         const smartButton = await $('//div/button[@class="smart-button"]');
         await expect(smartButton).toBeExisting();
         await smartButton.click();
+        const carSearchModal = await $('.order-header-time');
+        await carSearchModal.toBeDisplayed();
     })
 })
