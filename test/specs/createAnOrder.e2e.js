@@ -17,7 +17,7 @@ describe('Ordering a Taxi from Urban Routes', () => {
         await browser.pause(2000);
         const supportiveTaxi = await $('div=Supportive');
         await supportiveTaxi.waitForDisplayed();
-        await supportiveTaxi.click();;
+        await supportiveTaxi.click();
         await supportiveTaxi.isFocused();
     }),
 
