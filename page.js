@@ -50,4 +50,12 @@ module.exports = {
         await codeField.setValue(code)
         await $(this.confirmButton).click()
     },
+    addPaymentMethod: async function() {
+        const paymentMethod = await $('.pp-text');
+        await expect(paymentMethod).toBeExisting();
+        await paymentMethod.click();
+        const addCardButton = await $('div=Add card');
+        await expect(addCardButton).toBeExisting();
+        await addCardButton.click();
+    },
 };
