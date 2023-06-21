@@ -7,8 +7,9 @@ describe('Ordering a Taxi from Urban Routes', () => {
         await browser.url(`/`)
         const fromField = await $(page.fromField);
         await fromField.setValue('East 2nd Street, 601');
-        const toField = await $(page.toField)
-        await toField.setValue('1300 1st St')
+        const toField = await $(page.toField);
+        await toField.setValue('1300 1st St');
+        await expect(toField).toHaveValue('1300 1st St');
     }),
 
     it('should select Supportive taxi as the transportation of choice', async () => {
