@@ -58,4 +58,36 @@ module.exports = {
         await expect(addCardButton).toBeExisting();
         await addCardButton.click();
     },
+    addCreditCard: async function() {
+        const paymentMethod = await $('.pp-text');
+        await expect(paymentMethod).toBeExisting();
+        await paymentMethod.click();
+        const addCardButton = await $('div=Add card');
+        await expect(addCardButton).toBeExisting();
+        await addCardButton.click();
+        const creditCardField = await $(page.creditCardField);
+        await creditCardField.setValue('253795093758');
+        const cardCode = await $('.card-input#code');
+        await cardCode.setValue('13');
+        const linkButton = await $('button=Link');
+        await expect(linkButton).toBeExisting();
+        await linkButton.click();
+        const closePaymentWindow = await $('button.close-button.section-close')
+        await closePaymentWindow.click();
+        const payType = await $('.pp-value-text');
+        const payTypeText = await payType.getText();
+        await expect(payTypeText).toBe('Card');
+    },
+    openPhoneModal: async function() {
+        const phoneNumberButton = await $(page.phoneNumberButton);
+        await phoneNumberButton.waitForDisplayed();
+        await phoneNumberButton.click();
+        const phoneNumberModal = await $(page.phoneNumberModal);
+        await expect(phoneNumberModal).toBeExisting();
+    },
+    phoneInput: async function () {
+        const phoneNumber = helper.getPhoneNumber("+1");
+        await page.submitPhoneNumber(phoneNumber);
+        await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
+    },
 };
